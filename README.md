@@ -24,7 +24,8 @@ python video.py run4
 ```
 
 ### Model Architecture and Training Strategy
-
+> Any supervised machine learning problem works on labeled data (X, Y). Where X is the input and Y being the output. The learning algorithm learns the mapping function Y = f(X). In this problem, input X is the image of the road at any given point and output Y is the steering wheel axis. Deep neural networks seem to have great capabilities to act on image data. In this project a convolutional neural network (CNN) is created that is capable of driving a vehicle in a computer simulation without human intervention. 
+In the current project, we found the number of samples which steering angle is zero or close to zero is much higher than the rest. We used this information to design a data augmentation strategy that reduces the influence of those samples. A small correction factor was added for the left and right images, and the images were flipped to generate more usable images. 
 > The model is modified version of nVidia self driving car model. Lambda function is applied to normalize the image size, followed by cropping out the irrelevant parts of the road images. The kernel size and strides are kept as per the nvidia paper (three CNN layers with strides and two without strides). Drop out is added between the layers to reduce the number of parameters to be learned during a feedforward process. This also helps in reducing overfitting. The layers are then connected to dense layers - 100,50,10,1 to estimate the steering angle
 
 _________________________________________________________________
@@ -80,6 +81,7 @@ The model used rmprop optimizer, so the learning rate was not tuned manually. To
 2. Used images from left and right camera
 
 #### Data Collection Process
-> The car is driven for close to an hour by navigation with the help of a mouse. This help in understanding when the data is good enough to drive on a straight road. For turns, the car is driven with the help of keyboard to provide quick and large enough steering angles. For the bridge section, the car is kept close to a straight line. By providing a correction factor for left and right images, the car is able to learn how to cross the bridge even if is near the walls. Two laps with frequent pauses were covered for recovering from left and right lanes. One additional round was covered by navigating the car with keyboard strokes6
+> The car is driven for close to an hour by navigation with the help of a mouse. This help in understanding when the data is good enough to drive on a straight road. For turns, the car is driven with the help of keyboard to provide quick and large enough steering angles. For the bridge section, the car is kept close to a straight line. By providing a correction factor for left and right images, the car is able to learn how to cross the bridge even if is near the walls. Two laps with frequent pauses were covered for recovering from left and right lanes. One additional round was covered by navigating the car with keyboard strokes
 
+	
 
